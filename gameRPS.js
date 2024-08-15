@@ -92,7 +92,7 @@ function playGame(){
     } else if(humanScore < computerScore){
         console.log(`Human lost with:${humanScore} points, while Computer got: ${computerScore}`);
     }else{
-        console.log(`Its a tie! Human Score is${humanScore} and computer's is: ${computerScore}`);
+        console.log(`Its a tie! Human Score is ${humanScore} and computer's is: ${computerScore}`);
     }
     return { humanScore, computerScore };
 
