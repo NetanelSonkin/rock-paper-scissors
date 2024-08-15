@@ -34,8 +34,7 @@ const getHumanChoice = () =>{
 //if human chose scissors and computer paper > human ++
 // else its a tie - no increments 
 
-let humanScore = 0;
-let computerScore = 0;
+
 // let humanChoice = getHumanChoice();
 // let computerChoice = getComputerChoice();
 
@@ -64,19 +63,39 @@ function playRound(humanChoice , computerChoice){
         humanScore ++;}else{
             console.log('Its a tie!')
         }
-        return humanScore, computerScore;
+        return {humanScore, computerScore};
 }
 
-let humanChoice = getHumanChoice();
-let computerChoice = getComputerChoice();
-console.log(playRound(humanChoice, computerChoice));
+
+// console.log(playRound(humanChoice, computerChoice));
 
 
 //create function named playGame that will run playRound 5 times
-//create for loop that will keep track of the scores and in the end say who won the game
-
+//create for loop that will call playRound 5 times
+//get the scores
+//check who has better score
+//say who wins
+let humanScore = 0;
+let computerScore = 0;
 function playGame(){
-    for(i = 0 , i <= 4; i++; ){
-        
+
+    for(let i = 0; i <5 ; i++ ){
+        let humanChoice = getHumanChoice();
+        let computerChoice = getComputerChoice();
+        let result =  playRound(humanChoice, computerChoice);
+
+        humanScore = result.humanScore;
+        computerScore = result.computerScore;
     }
+    if(humanScore > computerScore){
+        console.log(`Human won! with:${humanScore} points, while Computer got: ${computerScore}`);
+    } else if(humanScore < computerScore){
+        console.log(`Human lost with:${humanScore} points, while Computer got: ${computerScore}`);
+    }else{
+        console.log(`Its a tie! Human Score is${humanScore} and computer's is: ${computerScore}`);
+    }
+    return { humanScore, computerScore };
+
 }
+
+console.log(playGame());
