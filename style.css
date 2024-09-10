@@ -1,3 +1,93 @@
-/* .screen{
-    border:solid 2px;
-} */
+#container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#display{
+    display: grid;
+    /* Changed from repeat(3, 1fr) to specify different column widths */
+    grid-template-columns: 1fr 2fr 1fr; /* Second column is twice as wide as the first and third columns */
+    grid-template-rows: repeat(2, 1fr); /* 2 equal rows */
+    gap: 10px; /* Optional: Add some spacing between items */
+    width: 600px;
+    height: 300px;
+}
+
+.grid-item {
+    background-color: lightgray; /* Optional: For better visibility */
+    border: 1px solid #ccc; /* Optional: Add border for better visibility */
+    padding: 20px; /* Optional: Add padding inside grid items */
+}
+
+.displayScore {
+    grid-column: 1 / 2; /* First column */
+    grid-row: 1 / 2; /* First row */
+}
+
+.displayText {
+    grid-column: 2 / 3; /* Second column */
+    grid-row: 1 / 2; /* First row */
+    align-items: center;
+    justify-content: center;
+}
+
+.displayOptions {
+    grid-column: 3 / 4; /* Third column */
+    grid-row: 1 / 2; /* First row */
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.displayBtns {
+    grid-column: 1 / 4; /* Spans all 3 columns */
+    grid-row: 2 / 3; /* Second row */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gameBtns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin: 5px 10px;
+}
+
+.displayText {
+    display:flex;
+    align-items: space;
+    justify-content: center;
+    white-space: pre-line;
+}
+
+.gameBtn {
+    width:  100px;
+    height: auto;
+    padding: 10px;
+}
+
+.gameOptions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
