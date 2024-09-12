@@ -73,7 +73,7 @@ function playGame(humanChoice, computerChoice) {
     displayText.textContent = `Game Over! Human wins with ${humanScore} points!`
     disableGame();
   }else if (computerScore >= 5) {
-    displayText.textContent = `Game Over! Human wins with ${humanScore} points!`
+    displayText.textContent = `Game Over! Computer wins with ${humanScore} points!`
     disableGame();
   }
 }
