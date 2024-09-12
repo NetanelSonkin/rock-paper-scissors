@@ -22,12 +22,33 @@ const getHumanChoice = (event) => {
   return humanChoice;
 };
 
+const handleBtnClick = (event) => {
+  let humanChoice = getHumanChoice(event);
+  let computerChoice = getComputerChoice();
+  playGame(humanChoice, computerChoice);
+}
 
-function playRound(humanChoice, computerChoice) {
-  if (humanClick === "Rock" && computerChoice === "Paper") {
+function startGame() {
+  humanScore = 0;
+  computerScore = 0;
+  displayText.textContent = "Make your decision:\nRock, Paper or Scissors";
+  updateDisplayScores();
+  btnRock.addEventListener("click", handleBtnClick);
+  btnPaper.addEventListener("click", handleBtnClick);
+  btnScissors.addEventListener("click", handleBtnClick);
+}
+
+const disableGame = () => {
+  btnRock.removeEventListener('click', handleBtnClick);
+  btnPaper.removeEventListener('click', handleBtnClick);
+  btnScissors.removeEventListener('click', handleBtnClick);
+}
+
+function playGame(humanChoice, computerChoice) {
+  if (humanChoice === "Rock" && computerChoice === "Paper") {
     displayText.textContent = "You lose! Paper beats Rock";
     computerScore++;
-  } else if (humanClick === "Rock" && computerChoice === "Scissors"){
+  } else if (humanChoice === "Rock" && computerChoice === "Scissors"){
     displayText.textContent = "You win! Rock beats Scissors";
     humanScore++;
   } else if (humanChoice === "Paper" && computerChoice === "Scissors") {
@@ -45,25 +66,25 @@ function playRound(humanChoice, computerChoice) {
   } else {
     displayText.textContent = "Its a tie!";
   }
-  return { humanScore, computerScore };
+
+  updateDisplayScores();
+
+  if (humanScore>= 5){
+    displayText.textContent = `Game Over! Human wins with ${humanScore} points!`
+    disableGame();
+  }else if (computerScore >= 5) {
+    displayText.textContent = `Game Over! Human wins with ${humanScore} points!`
+    disableGame();
+  }
+}
+
+const updateDisplayScores = () => {
+  displayScore.textContent = `Human: ${humanScore}\n Computer ${computerScore}`;
 }
 
 let humanScore = 0;
 let computerScore = 0;
-function playGame() {
-  humanScore = 0;
-  computerScore = 0;
-  displayText.textContent = "Make your decision:\nRock, Paper or Scissors";
 
-  if (humanScore > computerScore) {
-    displayText.textContent = `Human won! with:${humanScore} points, while Computer got: ${computerScore}`;
-  } else if (humanScore < computerScore) {
-    displayText.textContent = `Human lost with:${humanScore} points, while Computer got: ${computerScore}`;
-  } else {
-    displayText.textContent = `Its a tie! Human Score is ${humanScore} and computer's is: ${computerScore}`;
-  }
-  return { humanScore, computerScore };
-}
 
 let container = document.querySelector("#container");
 let display = document.createElement("div");
@@ -105,26 +126,19 @@ displayBtns = document.createElement("div");
 displayBtns.setAttribute("class", "grid-item displayBtns");
 
 let startBtn = document.createElement("button");
-let restartBtn = document.createElement("button");
 let listStart = document.createElement("li");
 startBtn.setAttribute("class", "gameBtn");
 startBtn.textContent = "Start";
 listStart.appendChild(startBtn);
-let listRestart = document.createElement("li");
-restartBtn.setAttribute("class", "gameBtn");
-restartBtn.textContent = "Restart";
-listRestart.appendChild(restartBtn);
 let gameOptions = document.createElement("ul");
 gameOptions.setAttribute("class", "gameOptions");
-gameOptions.append(listStart, listRestart);
+gameOptions.append(listStart);
 displayOptions.appendChild(gameOptions);
 displayBtns.appendChild(gameBtns);
 display.append(displayScore, displayText, displayOptions, displayBtns);
 
 
 
-startBtn.addEventListener("click", playGame);
-  btnRock.addEventListener("click", getHumanChoice);
-  btnPaper.addEventListener("click", getHumanChoice);
-  btnScissors.addEventListener("click", getHumanChoice);
+startBtn.addEventListener("click", startGame);
+
 

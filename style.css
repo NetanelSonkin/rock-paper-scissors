@@ -71,7 +71,7 @@ li {
 
 .displayText {
     display:flex;
-    align-items: space;
+    align-items: center;
     justify-content: center;
     white-space: pre-line;
 }
@@ -90,4 +90,11 @@ li {
     list-style-type: none;
     padding: 0;
     margin: 0;
+}
+
+.displayScore {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: pre-line;
 }
